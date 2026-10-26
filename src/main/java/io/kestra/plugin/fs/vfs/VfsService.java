@@ -346,10 +346,10 @@ public abstract class VfsService {
             } else {
                 URI pathToCreate = withPath(to, "/" + FilenameUtils.getPath(to.getPath()));
 
-                try (FileObject directory = fsm.resolveFile(to.toString(), fileSystemOptions)) {
+                try (FileObject directory = fsm.resolveFile(pathToCreate.toString(), fileSystemOptions)) {
                     if (!directory.exists()) {
                         directory.createFolder();
-                        runContext.logger().debug("Create directory '{}", VfsService.uriWithoutAuth(pathToCreate));
+                        runContext.logger().debug("Create directory '{}'", VfsService.uriWithoutAuth(pathToCreate));
                     }
                 }
             }
